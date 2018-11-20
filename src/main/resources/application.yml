@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: imp-get-image-app
+  profiles:
+    active: test
+
+logging:
+  level:
+    ROOT: INFO
+    #org.springframework.security: DEBUG
+
+cms:
+  base-url: contmgr-stg.kroger.com/CMURLProvider/ContentRetrievalServlet
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:sqlserver://n060kicsql41:1675;databaseName=impdbtest
+    username: svc3804impdbt
+    password: C83Dz4NBqDT0DNzAsdMGI7JD
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  #V2 - Related properties
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServer2012Dialect
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+
+# Folder path should end with '/'
+file:
+  source:
+    path: /Users/satz/Documents/TCL/Optimus/Postman/
+  destination:
+    path: /Users/satz/Desktop/Test_Folder_Delete/
+
+cron:
+  value: 0/25 0/5 * * * *
+
